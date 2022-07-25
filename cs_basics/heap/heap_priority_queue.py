@@ -57,7 +57,7 @@ class HeapPriorityQueue(PriorityQueueBase):
         return len(self._data)
 
     def add(self, key, value):
-        self._data.append(self._Item(key, value))
+        self._data.append(self._Item(key, value))  # add at the end
         self._upheap(len(self._data) - 1)  # bubble up
 
     def min(self):
@@ -76,13 +76,20 @@ class HeapPriorityQueue(PriorityQueueBase):
         self._downheap(0)  # bubble down
         return (item._key, item._value)
 
+    def __repr__(self):
+
+        out = [f'index:{index} key:{item._key} value:{item._value}' for index, item in enumerate(self._data)]
+        return '\n'.join(out)
+
+
 
 if __name__ == '__main__':
     rand_list = [(312, 'jack'), (425, 'jill'), (253, 'bob'), (6457, 'jan'), (2523, 'stan'), (856, 'jane'),
                  (23, 'lilith'), (735, 'stella'), (253, 'maggie'), (999, 'ella')]
     h = HeapPriorityQueue(rand_list)
+    print(h)
     print(h.remove_min())
     print(h.remove_min())
     print(h.remove_min())
     print(h.remove_min())
-    print(h.remove_min())
+
