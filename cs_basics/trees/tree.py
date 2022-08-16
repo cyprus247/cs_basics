@@ -111,3 +111,14 @@ class Tree:
                 for child in self.children(p):
                     fringe.enqueue(child)
 
+    def breadth_first_with_lvl(self):
+        if not self.is_empty():
+            fringe = SimpleQueue()  # should be linked queue
+            fringe.enqueue((self.root(), self.depth(self.root())))
+            while not fringe.is_empty():
+                p, l = fringe.dequeue()
+                yield p, l
+                for child in self.children(p):
+                    fringe.enqueue((child, self.depth(child)))
+
+
